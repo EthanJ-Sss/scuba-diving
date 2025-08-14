@@ -15,13 +15,20 @@ export default function Home() {
   // 优先从 public/data 加载导入后的 JSON 数据，失败则回退示例数据
   useEffect(() => {
     let canceled = false
-    fetch('/data/dive-sites.json', { cache: 'no-store' })
-      .then(async (res) => {
-        if (!res.ok) return null
-        try { return await res.json() } catch { return null }
-      })
-      .then((json) => { if (!canceled && Array.isArray(json)) setRemoteData(json as any) })
-      .catch(() => {})
+    const load = async () => {
+      const tryLoad = async (url: string) => {
+        try {
+          const res = await fetch(url, { cache: 'no-store' })
+          if (!res.ok) return null
+          return await res.json()
+        } catch { return null }
+      }
+      const primary = await tryLoad('/data/dive-sites.json')
+      if (!canceled && Array.isArray(primary)) { setRemoteData(primary as any); return }
+      const fallback = await tryLoad('/data/sample-dive-sites.json')
+      if (!canceled && Array.isArray(fallback)) setRemoteData(fallback as any)
+    }
+    load()
     return () => { canceled = true }
   }, [])
 
