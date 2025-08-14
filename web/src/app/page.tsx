@@ -1,7 +1,7 @@
 "use client"
 import Map, { MapHandle } from "@/components/Map";
 import { sampleDiveSites } from "@/data/sample-dive-sites";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function Home() {
   const mapRef = useRef<MapHandle>(null)
@@ -10,7 +10,22 @@ export default function Home() {
   const [country, setCountry] = useState("")
   const [season, setSeason] = useState("")
   const [dtype, setDtype] = useState("")
-  const data = sampleDiveSites
+  const [remoteData, setRemoteData] = useState<typeof sampleDiveSites | null>(null)
+
+  // 优先从 public/data 加载导入后的 JSON 数据，失败则回退示例数据
+  useEffect(() => {
+    let canceled = false
+    fetch('/data/dive-sites.json', { cache: 'no-store' })
+      .then(async (res) => {
+        if (!res.ok) return null
+        try { return await res.json() } catch { return null }
+      })
+      .then((json) => { if (!canceled && Array.isArray(json)) setRemoteData(json as any) })
+      .catch(() => {})
+    return () => { canceled = true }
+  }, [])
+
+  const data = remoteData ?? sampleDiveSites
   const filtered = useMemo(() => {
     return data.filter((s) => {
       const okName = q ? s.name.toLowerCase().includes(q.toLowerCase()) : true
