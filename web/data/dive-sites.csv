@@ -1,0 +1,6 @@
+id,name,lng,lat,difficulty,country,region,description,depthAvg,depthMax,visibility,temperature,bestSeason,type,features,risks,nearbyAccommodation,nearbyShops,nearbyMedical
+bali-manta,Nusa Penida - Manta Point,115.496,-8.733,intermediate,Indonesia,Bali,蝠鲼清洁站，水流较强,15,25,20,25,Apr|May|Jun|Jul|Aug|Sep,drift|reef,manta|coral,涌浪强|下潜出水需控制浮力,蓝梦岛度假村(2km)|水明漾酒店(12km),潜店A：体验船潜/岸潜|潜店B：蝠鲼专题,当地诊所(6km)
+egypt-blue,Blue Hole - Dahab,34.544,28.571,advanced,Egypt,Red Sea,著名蓝洞 深度大 技潜热点,30,100,30,24,Mar|Apr|May|Oct|Nov,blue-hole|wall,deep|blue-hole,深潜风险高|氮醉与减压病风险,达哈卜海滨旅店(1km),技术潜水中心(0.5km),潜水医疗站(10km)
+philippines-tubbataha,Tubbataha Reef,120.100,9.061,advanced,Philippines,Sulu Sea,离岸海洋保护区 巨物概率高,18,40,30,27,Mar|Apr|May|Jun,reef|wall,shark|manta|coral,远海环境|突发洋流,船宿(母港),国家海洋公园许可中心,最近医疗点(船宿配置)
+thailand-richelieu,Richelieu Rock,97.839,9.364,intermediate,Thailand,Andaman,软珊瑚与微距天堂,16,30,20,28,Jan|Feb|Mar|Apr,reef,macro|soft-coral,偶有中等流,考拉/龟岛旅宿(码头接送),斯米兰潜店(船期),当地医院(45km)
+
