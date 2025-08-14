@@ -29,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <link rel="manifest" href="/site.webmanifest" />
         <AuthProvider>
           <Header />
           {children}

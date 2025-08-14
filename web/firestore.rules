@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /dive_sites/{siteId} {
+      allow read: if true;
+      allow write: if false; // 仅管理员后续开放
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && request.auth.uid == resource.data.user_id;
+    }
+
+    match /logs/{logId} {
+      allow read: if isSignedIn() && request.auth.uid == resource.data.user_id;
+      allow create: if isSignedIn() && request.auth.uid == request.resource.data.user_id;
+      allow update, delete: if isSignedIn() && request.auth.uid == resource.data.user_id;
+    }
+  }
+}
+
