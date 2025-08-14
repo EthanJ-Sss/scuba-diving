@@ -7,14 +7,20 @@ export default function Home() {
   const mapRef = useRef<MapHandle>(null)
   const [q, setQ] = useState("")
   const [level, setLevel] = useState("")
+  const [country, setCountry] = useState("")
+  const [season, setSeason] = useState("")
+  const [dtype, setDtype] = useState("")
   const data = sampleDiveSites
   const filtered = useMemo(() => {
     return data.filter((s) => {
       const okName = q ? s.name.toLowerCase().includes(q.toLowerCase()) : true
       const okLevel = level ? s.difficulty === level : true
-      return okName && okLevel
+      const okCountry = country ? (s.country?.toLowerCase() === country.toLowerCase()) : true
+      const okSeason = season ? (s.bestSeason?.some(m => m.toLowerCase() === season.toLowerCase())) : true
+      const okType = dtype ? (s.type?.includes(dtype)) : true
+      return okName && okLevel && okCountry && okSeason && okType
     })
-  }, [data, q, level])
+  }, [data, q, level, country, season, dtype])
 
   return (
     <div className="min-h-screen p-6 sm:p-8 space-y-4">
@@ -33,11 +39,29 @@ export default function Home() {
             </div>
           )}
         </div>
+        <select className="border rounded px-3 py-2" value={country} onChange={(e)=>setCountry(e.target.value)}>
+          <option value="">全部国家</option>
+          {[...new Set(data.map(d=>d.country).filter(Boolean))].map(c => (
+            <option key={String(c)} value={String(c)}>{String(c)}</option>
+          ))}
+        </select>
         <select className="border rounded px-3 py-2" value={level} onChange={(e)=>setLevel(e.target.value)}>
           <option value="">全部难度</option>
           <option value="beginner">初级</option>
           <option value="intermediate">中级</option>
           <option value="advanced">高级</option>
+        </select>
+        <select className="border rounded px-3 py-2" value={dtype} onChange={(e)=>setDtype(e.target.value)}>
+          <option value="">全部类型</option>
+          {[...new Set(data.flatMap(d=>d.type ?? []))].map(t => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+        <select className="border rounded px-3 py-2" value={season} onChange={(e)=>setSeason(e.target.value)}>
+          <option value="">全年月份</option>
+          {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m => (
+            <option key={m} value={m}>{m}</option>
+          ))}
         </select>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-4 items-start">

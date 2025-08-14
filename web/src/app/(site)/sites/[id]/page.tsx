@@ -35,8 +35,23 @@ export default function SiteDetailPage() {
         <div className="border rounded p-3">类型：{site.type?.join(', ') ?? '-'}</div>
       </div>
       <div className="text-sm">特色：{site.features?.join(', ') ?? '-'}</div>
-      <div className="text-sm text-gray-600">风险提示：示例数据，后续接入真实风险项（自然/生物/操作）</div>
-      <div className="text-sm text-gray-600">周边配套：示例数据，后续接入潜店/住宿/医疗</div>
+      <div className="text-sm">
+        风险提示：{site.risks?.join('、') ?? '—'}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+        <div className="border rounded p-3">
+          <div className="font-medium mb-1">住宿</div>
+          <div>{site.nearbyAccommodation?.join('、') ?? '—'}</div>
+        </div>
+        <div className="border rounded p-3">
+          <div className="font-medium mb-1">潜店</div>
+          <div>{site.nearbyShops?.join('、') ?? '—'}</div>
+        </div>
+        <div className="border rounded p-3">
+          <div className="font-medium mb-1">医疗</div>
+          <div>{site.nearbyMedical?.join('、') ?? '—'}</div>
+        </div>
+      </div>
     </div>
   )
 }

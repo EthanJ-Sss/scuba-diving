@@ -13,6 +13,10 @@ export type SampleMarker = {
     bestSeason?: string[]
     type?: string[]
     features?: string[]
+    risks?: string[]
+    nearbyAccommodation?: string[]
+    nearbyShops?: string[]
+    nearbyMedical?: string[]
 }
 
 export const sampleDiveSites: SampleMarker[] = [
@@ -30,7 +34,11 @@ export const sampleDiveSites: SampleMarker[] = [
         temperature: 25,
         bestSeason: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
         type: ['drift', 'reef'],
-        features: ['manta', 'coral']
+        features: ['manta', 'coral'],
+        risks: ['涌浪强', '下潜出水需控制浮力'],
+        nearbyAccommodation: ['蓝梦岛度假村(2km)', '水明漾酒店(12km)'],
+        nearbyShops: ['潜店A：体验船潜/岸潜', '潜店B：蝠鲼专题'],
+        nearbyMedical: ['当地诊所(6km)']
     },
     {
         id: 'egypt-blue',
@@ -46,7 +54,11 @@ export const sampleDiveSites: SampleMarker[] = [
         temperature: 24,
         bestSeason: ['Mar', 'Apr', 'May', 'Oct', 'Nov'],
         type: ['blue-hole', 'wall'],
-        features: ['deep', 'blue-hole']
+        features: ['deep', 'blue-hole'],
+        risks: ['深潜风险高', '氮醉与减压病风险'],
+        nearbyAccommodation: ['达哈卜海滨旅店(1km)'],
+        nearbyShops: ['技术潜水中心(0.5km)'],
+        nearbyMedical: ['潜水医疗站(10km)']
     },
     {
         id: 'philippines-tubbataha',
@@ -62,7 +74,11 @@ export const sampleDiveSites: SampleMarker[] = [
         temperature: 27,
         bestSeason: ['Mar', 'Apr', 'May', 'Jun'],
         type: ['reef', 'wall'],
-        features: ['shark', 'manta', 'coral']
+        features: ['shark', 'manta', 'coral'],
+        risks: ['远海环境', '突发洋流'],
+        nearbyAccommodation: ['船宿(母港)'],
+        nearbyShops: ['国家海洋公园许可中心'],
+        nearbyMedical: ['最近医疗点(船宿配置)']
     },
     {
         id: 'thailand-richelieu',
@@ -78,7 +94,11 @@ export const sampleDiveSites: SampleMarker[] = [
         temperature: 28,
         bestSeason: ['Jan', 'Feb', 'Mar', 'Apr'],
         type: ['reef'],
-        features: ['macro', 'soft-coral']
+        features: ['macro', 'soft-coral'],
+        risks: ['偶有中等流'],
+        nearbyAccommodation: ['考拉/龟岛旅宿(码头接送)'],
+        nearbyShops: ['斯米兰潜店(船期)'],
+        nearbyMedical: ['当地医院(45km)']
     },
 ]
 
